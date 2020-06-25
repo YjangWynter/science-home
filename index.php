@@ -174,8 +174,8 @@ if ($result->num_rows <= 0) {
                     </div>
                 </div>
             </div>
-            <div class="row mx-0 px-0">
-                <div class="col-3">
+            <div class="row mx-0 px-0 d-flex">
+                <div class="col-sm-12 col-md-3">
                     <h2 class="mt-4">Common Links</h2>
                     <hr>
                     <ul class="list-group row  text-left  my-3 px-3 ">
@@ -216,13 +216,14 @@ if ($result->num_rows <= 0) {
                         <button class="btn btn-primary text-white col-8 py-2">Login</button>
                     </div>
                 </div>
-                <div class="col-9 ">
+                
+                <div class="col-sm-12 col-md-9">
                     <div class=" card m-0 p-0">
                         <div class="row card-top row">
                             <div class=" col-sm-6  mx-0 py-4 text">
 
                                 <h4 class="px-0 text-center py-2">Astronomy</h4>
-                                <a href=""><img class=" img-fluid science-img " src="astronomy-banner_lowres.jpeg"
+                                <a href=""><img class=" img-fluid science-img mx-0" src="astronomy-banner_lowres.jpeg"
                                         alt="" srcset=""></a>
 
 
@@ -230,13 +231,11 @@ if ($result->num_rows <= 0) {
                             <div class="card-body col-sm-6 py-2 mt-4 px-0 mx-0 ">
                                 <p class=" px-0 text-center lead">Quick Links</p>
 
-                                <ul class="list-group d-flex text-center justify-content-center">
+                                <ul class="list-group d-flex text-center justify-content-center px-4 mx-4">
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
-                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 0</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 3</a>
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
-
-
                                 </ul>
                             </div>
 
@@ -274,7 +273,7 @@ if ($result->num_rows <= 0) {
                             <div class=" col-sm-6  mx-0 py-4 text">
 
                                 <h4 class="px-0 text-center py-2">Atmospheric Sciences</h4>
-                                <a href=""><img class=" img-fluid science-img " src="astronomy-banner_lowres.jpeg"
+                                <a href=""><img class=" img-fluid science-img mx-0" src="astronomy-banner_lowres.jpeg"
                                         alt="" srcset=""></a>
 
 
@@ -282,13 +281,11 @@ if ($result->num_rows <= 0) {
                             <div class="card-body col-sm-6 py-2 mt-4 px-0 mx-0 ">
                                 <p class=" px-0 text-center lead">Quick Links</p>
 
-                                <ul class="list-group d-flex text-center justify-content-center">
+                                <ul class="list-group d-flex text-center justify-content-center px-4 mx-4">
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
-                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 0</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 3</a>
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
-
-
                                 </ul>
                             </div>
 
@@ -323,21 +320,21 @@ if ($result->num_rows <= 0) {
                     </div>
                     <div class=" card m-0 p-0">
                         <div class="row card-top row">
-                            <div class=" col-sm-6  mx-0 py-4 text">
+                            <div class=" col-sm-6  mx-auto py-4 text">
 
                                 <h4 class="px-0 text-center py-2">Planetary Sciences</h4>
-                                <a href=""><img class=" img-fluid science-img " src="astronomy-banner_lowres.jpeg"
+                                <a href=""><img class=" img-fluid science-img mx-0" src="astronomy-banner_lowres.jpeg"
                                         alt="" srcset=""></a>
 
 
                             </div>
                             <div class="card-body col-sm-6 py-2 mt-4 px-0 mx-0 ">
-                                <p class=" px-0 text-center lead">Quick Links</p>
+                                <p class=" px-0 text-center lead ">Quick Links</p>
 
-                                <ul class="list-group d-flex text-center justify-content-center">
+                                <ul class="list-group d-flex text-center justify-content-center px-4 mx-4">
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
-                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 0</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 3</a>
                                     <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
 
 
