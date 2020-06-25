@@ -2,7 +2,7 @@
 /*
 
 */
-
+// localhost config
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -30,7 +30,7 @@ if ($result->num_rows <= 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grid</title>
+    <title>Science Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -112,17 +112,17 @@ if ($result->num_rows <= 0) {
                         <div class="card-body event-info   ">
 
                             <div id="carousel" class="carousel slide bg-dark w-100" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <?php //NOT NEEDED: echo "<a href='#' class='list-group-item px-4 list-group-item-action  '><img src='./astro.png' alt='' class='col-4 img-fluid'><span class='badge'>". $row["date"]."</span><br>".$row["title"]."</a>";
-
+                                <ol class="carousel-indicators"> 
+                                    <?php 
+                                //while PHP pulls results
                                  while($row = $result->fetch_assoc()) {
                                     
-                                           if ($ctr = 0){//restricts to show the newest four results
-                                               ?><li data-target="#carousel" data-slide-to="<?php echo $ctr ?>"
-                                        class="active"></li><?php
-                                           }else{
-                                            ?><li data-target="#carousel" data-slide-to="<?php echo $ctr ?>"></li><?php
-                                           }         
+                                           if ($ctr = 0){ //add active class to the first element of the events  ?>
+                                                <li data-target="#carousel" data-slide-to="<?php echo $ctr ?>" class="active"></li>
+                                            <?php }else{ //create a list item under carousel and number by number placement of element ?>
+                                                <li data-target="#carousel" data-slide-to="<?php echo $ctr ?>"></li>
+                                            <?php }   
+                                        //add to the counter          
                                         $ctr++;
                                     }
                                 
