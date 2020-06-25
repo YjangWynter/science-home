@@ -50,22 +50,25 @@ if ($result->num_rows <= 0) {
         font-size: 1rem
     }
 
-    .event-info,a {
+    .event-info,
+    a {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
 
     }
-    .bg-img{
+
+    .bg-img {
         background-image: url("https://welcome.topuertorico.org/img/th-arecibo-tele.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         min-height: 250px;
     }
-    .science-img{
-        width:100%;
-        height:150px;
+
+    .science-img {
+        width: 100%;
+        height: 150px;
     }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -98,7 +101,7 @@ if ($result->num_rows <= 0) {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    
+
 
                 </div>
                 <div class="col-sm-6 px-4 bg-white card-footer ">
@@ -107,203 +110,254 @@ if ($result->num_rows <= 0) {
                             <h4 class=" m-0 px-0 py-1 text-center">Upcoming Events</h4>
                         </div>
                         <div class="card-body event-info   ">
-                            <ul class="list-group row ">
-                                <?php 
+
+                            <div id="carousel" class="carousel slide bg-dark w-100" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <?php //NOT NEEDED: echo "<a href='#' class='list-group-item px-4 list-group-item-action  '><img src='./astro.png' alt='' class='col-4 img-fluid'><span class='badge'>". $row["date"]."</span><br>".$row["title"]."</a>";
+
                                  while($row = $result->fetch_assoc()) {
-                                    if ($ctr < 2){ //restricts to show the newest four results
-                                                    //
-                                        echo "<a href='#' class='list-group-item px-4 list-group-item-action  '><img src='./astro.png' alt='' class='col-4 img-fluid'><span class='badge'>". $row["date"]."</span><br>".$row["title"]."</a>";
+                                    
+                                           if ($ctr = 0){//restricts to show the newest four results
+                                               ?><li data-target="#carousel" data-slide-to="<?php echo $ctr ?>"
+                                        class="active"></li><?php
+                                           }else{
+                                            ?><li data-target="#carousel" data-slide-to="<?php echo $ctr ?>"></li><?php
+                                           }         
                                         $ctr++;
                                     }
-                                }
-                              }
-                              ?>
-                            
+                                
+                              
+                                 ?>
+                                </ol>
+                                <div class="carousel-inner  h-100 w-100">
+                                    <?php 
+                                            $ctr = 0; //reset counter
+                                                while($row = $result->fetch_assoc()) {
+                                                    if ($ctr = 0){//restricts to show the newest four results   ?>
+
+                                    <div class="carousel-item active">
+                                        <img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                            alt="...">
+                                        <div class="carousel-caption d-none d-md-block text-center">
+                                            <h5>Test Item <?php echo 1 + $ctr?></h5>
+                                            <p>...</p>
+                                        </div>
+                                    </div>
+                                    <?php
+                                                    }else{
+                                                    ?>
+                                    <div class="carousel-item">
+                                        <img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                            alt="...">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Test Item <?php echo 1 + $ctr?></h5>
+                                            <p>...</p>
+                                        </div>
+                                    </div>
+                                    <?php
+                                                    }   
+                                                }
+                                            }
+                                            ?>
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         </div>
-                        
                     </div>
-
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 row mx-0 px-0">
-        <div class="col-3">
-        <h2>Common Links</h2>
-        <ul class="list-group row "></ul>
-        </div>
-        <div class="col-9 ">
-            <div class=" card m-0 p-0">
-                <div class="row card-top">
-                    <div class=" col-sm-12  mx-0 py-4 text">
+            <div class="col-sm-12 row mx-0 px-0">
+                <div class="col-3">
+                    <h2 class="mt-4">Common Links</h2>
+                    <br>
+                    <h3>Telescope</h3>
+                    <ul class="list-group row ">
+                        <a href='#' class='list-group-item px-4 list-group-item-action  '>Schedule</a>
+                    </ul>
+                </div>
+                <div class="col-9 ">
+                    <div class=" card m-0 p-0">
+                        <div class="row card-top">
+                            <div class=" col-sm-12  mx-0 py-4 text">
 
-                        <h4 class="px-0 text-center py-2">Astronomy</h4>
-                        <a href=""><img class=" img-fluid science-img "
-                                src="astronomy-banner_lowres.jpeg" alt="" srcset=""></a>
+                                <h4 class="px-0 text-center py-2">Astronomy</h4>
+                                <a href=""><img class=" img-fluid science-img " src="astronomy-banner_lowres.jpeg"
+                                        alt="" srcset=""></a>
 
 
+                            </div>
+                            <div class="card-body col-sm-12 py-2  px-0 mx-4 ">
+                                <p class=" px-0 text-center lead">Quick Links</p>
+
+                                <ul class="list-group d-flex text-center justify-content-center">
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 0</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
+
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="row card-body  ">
+                            <p class="py-2 px-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt voluptate
+                                consectetur proident et culpa
+                                qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit
+                                reprehenderit
+                                occaecat enim ullamco duis duis sit. </p>
+                        </div>
                     </div>
-                    <div class="card-body col-sm-12 py-2  px-0 mx-4 ">
-                        <p class=" px-0 text-center lead">Quick Links</p>
+                    <div class="card m-0 p-0">
+                        <div class="row card-top">
+                            <div class=" col-sm-12  mx-0 py-4">
 
-                        <ul class="list-group d-flex text-center justify-content-center">
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 0</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
-
-
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="row card-body  ">
-                    <p class="py-2 px-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt voluptate
-                        consectetur proident et culpa
-                        qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit reprehenderit
-                        occaecat enim ullamco duis duis sit. </p>
-                </div>
-            </div>
-            <div class="card m-0 p-0">
-                <div class="row card-top">
-                    <div class=" col-sm-12  mx-0 py-4">
-
-                        <h4 class="  col-12 px-0 text-center py-2">Atmospheric Sciences</h4>
-                        <a href=""><img class=" img-fluid  science-img"
-                                src="atmosphere_lowres.jpeg" alt="" srcset=""></a>
+                                <h4 class="  col-12 px-0 text-center py-2">Atmospheric Sciences</h4>
+                                <a href=""><img class=" img-fluid  science-img" src="atmosphere_lowres.jpeg" alt=""
+                                        srcset=""></a>
 
 
-                    </div>
-                    <div class="card-body col-sm-12 py-2  px-0 mx-4 ">
-                        <p class=" px-0 text-center lead">Quick Links</p>
+                            </div>
+                            <div class="card-body col-sm-12 py-2  px-0 mx-4 ">
+                                <p class=" px-0 text-center lead">Quick Links</p>
 
-                        <ul class="list-group text-center ">
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 3</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
+                                <ul class="list-group text-center ">
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 3</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
 
-                        </ul>
-                    </div>
+                                </ul>
+                            </div>
 
-                </div>
-                <div class="row card-body  ">
-                    <p class="py-2 px-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt voluptate
-                        consectetur proident et culpa
-                        qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit reprehenderit
-                        occaecat enim ullamco duis duis sit. </p>
-                </div>
-            </div>
-        
-            <div class="card m-0 p-0">
-                <div class="row card-top">
-                    <div class=" col-sm-12  mx-0 py-4">
-
-                        <h4 class="  col-12 px-0 text-center py-2">Planetary Sciences</h4>
-                        <a href=""><img class=" img-fluid science-img"
-                                src="planetary_lowres.jpeg" alt="" srcset=""></a>
-
-
-                    </div>
-                    <div class="card-body col-sm-12 py-2  px-0 mx-4 ">
-                        <p class=" px-0 text-center lead">Quick Links</p>
-
-                        <ul class="list-group text-center   ">
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 3</a>
-                            <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
-
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="row card-body  ">
-                    <p class="py-2 px-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt voluptate
-                        consectetur proident et culpa
-                        qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit reprehenderit
-                        occaecat enim ullamco duis duis sit. </p>
-                </div>
-            </div>
-            </div>
-        </div>
-           
-        <div class="col-sm-12 row mx-0 px-0">
-            
-            <div class="col-sm-6 card m-0 p-0">
-                <h4 class="text-center py-4">Proposals</h4>
-
-                <div class="row card-top">
-
-                    <a href=""><img class="card-img col-sm-12  img-fluid "
-                            src="http://www.naic.edu/ao/sites/default/files/apr271961.jpg" alt="" srcset=""></a>
-                </div>
-
-                <div class="row card-body  ">
-                    <div class=" col-sm-6 py-2  px-0 mx-0 ">
-                        <p class=" px-0 text-center lead">Quick Links</p>
-
-                        <ul class="list-group text-center  px-3">
-                            <a href="#" class="list-group-item list-group-item-action">Call for Proposals</a>
-                            <a href="#" class="list-group-item list-group-item-action">HF Proposals</a>
-                            <a href="#" class="list-group-item list-group-item-action">Astronomy 2020
-                                Whitepapers</a>
-                        </ul>
-                    </div>
-                    <p class="mt-4 col-sm-6 p-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt
-                        voluptate consectetur proident et culpa
-                        qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit
-                        reprehenderit
-                        occaecat enim ullamco duis duis sit. </p>
-                </div>
-
-            </div>
-            <div class="col-sm-6 card m-0 p-0">
-                <h4 class=" text-center py-4">Telescope</h4>
-
-                <div class="row card-top">
-
-                    <a href=""><img class="card-img col-sm-12  img-fluid "
-                            src="http://www.naic.edu/ao/sites/default/files/ao020.jpg" alt="" srcset=""></a>
-                </div>
-
-                <div class="row card-body  ">
-                    <div class=" col-sm-6 py-2  px-0 mx-0 ">
-                        <p class=" px-0 text-center lead">Quick Links</p>
-
-                        <ul class="list-group text-center  px-3">
-                            <a href="#" class="list-group-item list-group-item-action ">Schedule</a>
-                            <a href="#" class="list-group-item list-group-item-action">Operations</a>
-                            <a href="#" class="list-group-item list-group-item-action">Remote Observation</a>
-                            <a href="#" class="list-group-item list-group-item-action">Phil's Home Page</a>
-                            <a href="#" class="list-group-item list-group-item-action ">Puerto Rico Coordination
-                                Zone</a>
-
-                        </ul>
-                    </div>
-                    <p class="mt-4 col-sm-6 p-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt
-                        voluptate consectetur proident et culpa
-                        qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit
-                        reprehenderit
-                        occaecat enim ullamco duis duis sit. </p>
-                </div>
-
-            </div>
-
-        </div>
-        </div>
-        <div class=" bg-white my-0 p-4  card-footer mx-1 row">
-                        
-                        <img class="col-xs-12 col-sm-10 col-md-10 col-lg-6 " alt="" src="astro.png">
-                        
-                        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 my-4 text-center">
-
-                            <h4 class="my-4 p-0">Intranet User?</h4>
-                        
-                            <button class="btn btn-primary text-white col-8 py-2">Login</button>
+                        </div>
+                        <div class="row card-body  ">
+                            <p class="py-2 px-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt voluptate
+                                consectetur proident et culpa
+                                qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit
+                                reprehenderit
+                                occaecat enim ullamco duis duis sit. </p>
                         </div>
                     </div>
 
-    </div>
+                    <div class="card m-0 p-0">
+                        <div class="row card-top">
+                            <div class=" col-sm-12  mx-0 py-4">
+
+                                <h4 class="  col-12 px-0 text-center py-2">Planetary Sciences</h4>
+                                <a href=""><img class=" img-fluid science-img" src="planetary_lowres.jpeg" alt=""
+                                        srcset=""></a>
+
+
+                            </div>
+                            <div class="card-body col-sm-12 py-2  px-0 mx-4 ">
+                                <p class=" px-0 text-center lead">Quick Links</p>
+
+                                <ul class="list-group text-center   ">
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 1</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 2</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 3</a>
+                                    <a href="#" class="list-group-item list-group-item-action px-0 mx-0">Link 4</a>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="row card-body  ">
+                            <p class="py-2 px-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt voluptate
+                                consectetur proident et culpa
+                                qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit
+                                reprehenderit
+                                occaecat enim ullamco duis duis sit. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 row mx-0 px-0">
+
+                <div class="col-sm-6 card m-0 p-0">
+                    <h4 class="text-center py-4">Proposals</h4>
+
+                    <div class="row card-top">
+
+                        <a href=""><img class="card-img col-sm-12  img-fluid "
+                                src="http://www.naic.edu/ao/sites/default/files/apr271961.jpg" alt="" srcset=""></a>
+                    </div>
+
+                    <div class="row card-body  ">
+                        <div class=" col-sm-6 py-2  px-0 mx-0 ">
+                            <p class=" px-0 text-center lead">Quick Links</p>
+
+                            <ul class="list-group text-center  px-3">
+                                <a href="#" class="list-group-item list-group-item-action">Call for Proposals</a>
+                                <a href="#" class="list-group-item list-group-item-action">HF Proposals</a>
+                                <a href="#" class="list-group-item list-group-item-action">Astronomy 2020
+                                    Whitepapers</a>
+                            </ul>
+                        </div>
+                        <p class="mt-4 col-sm-6 p-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt
+                            voluptate consectetur proident et culpa
+                            qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit
+                            reprehenderit
+                            occaecat enim ullamco duis duis sit. </p>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 card m-0 p-0">
+                    <h4 class=" text-center py-4">Telescope</h4>
+
+                    <div class="row card-top">
+
+                        <a href=""><img class="card-img col-sm-12  img-fluid "
+                                src="http://www.naic.edu/ao/sites/default/files/ao020.jpg" alt="" srcset=""></a>
+                    </div>
+
+                    <div class="row card-body  ">
+                        <div class=" col-sm-6 py-2  px-0 mx-0 ">
+                            <p class=" px-0 text-center lead">Quick Links</p>
+
+                            <ul class="list-group text-center  px-3">
+                                <a href="#" class="list-group-item list-group-item-action ">Schedule</a>
+                                <a href="#" class="list-group-item list-group-item-action">Operations</a>
+                                <a href="#" class="list-group-item list-group-item-action">Remote Observation</a>
+                                <a href="#" class="list-group-item list-group-item-action">Phil's Home Page</a>
+                                <a href="#" class="list-group-item list-group-item-action ">Puerto Rico Coordination
+                                    Zone</a>
+
+                            </ul>
+                        </div>
+                        <p class="mt-4 col-sm-6 p-2">Culpa esse officia reprehenderit aute eiusmod Lorem ut sunt
+                            voluptate consectetur proident et culpa
+                            qui. Fugiat deserunt sint veniam occaecat. Id reprehenderit qui ea occaecat velit
+                            reprehenderit
+                            occaecat enim ullamco duis duis sit. </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class=" bg-white my-0 p-4  card-footer mx-1 row">
+
+                <img class="col-xs-12 col-sm-10 col-md-10 col-lg-6 " alt="" src="astro.png">
+
+                <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 my-4 text-center">
+
+                    <h4 class="my-4 p-0">Intranet User?</h4>
+
+                    <button class="btn btn-primary text-white col-8 py-2">Login</button>
+                </div>
+            </div>
+
+        </div>
 
 </body>
 
