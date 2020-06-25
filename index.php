@@ -34,7 +34,7 @@
     }
 
     .bg-img {
-        background-image: url("https://welcome.topuertorico.org/img/th-arecibo-tele.jpg");
+        background-image: url("https://welcome.topuertorico.org/img/th-arecibo-tele.jpg"); 
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -83,7 +83,6 @@ if ($result->num_rows <= 0) {
     // output data of each row
     echo "0 results";
   } else {
-      echo "Results found";
 
    //while PHP pulls results
   ?>
@@ -108,11 +107,11 @@ if ($result->num_rows <= 0) {
                 <div class="col-sm-6 px-4 bg-white card-footer ">
                     <div class="card my-0 p-4">
                         <div class="card-top">
-                            <h4 class=" m-0 px-0 py-1 text-center">Upcoming Events</h4>
+                            <h4 class=" m-0 px-0 py-1 text-center">Events</h4>
                         </div>
                         <div class="card-body">
 
-                            <div id="carousel" class="carousel slide bg-dark w-100 " data-ride="carousel">
+                            <div id="events" class="carousel slide bg-dark w-100 " data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <?php  
                                           $ctr = 0; //counter
@@ -120,10 +119,10 @@ if ($result->num_rows <= 0) {
                                           while($row = $result->fetch_assoc()) {
                                             if ($ctr == 0){ //add active class to the first element of the events  
                                             
-                                                echo "<li data-target='#carousel' data-slide-to='". $ctr. "'class='active'></li>";
+                                                echo "<li data-target='#events' data-slide-to='". $ctr. "'class='active'></li>";
                                             }else{ //create a list item under carousel and number by number placement of element 
                                             
-                                                echo "<li data-target='#carousel' data-slide-to='". $ctr. "'></li>";
+                                                echo "<li data-target='#events' data-slide-to='". $ctr. "'></li>";
                                             } 
                                             $ctr++;    
                                             }   
@@ -142,7 +141,7 @@ if ($result->num_rows <= 0) {
                                                     <img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
                                                         alt="...">
                                                     <div class="carousel-caption d-none d-md-block text-center d-flex">
-                                                        <h5 class="event-info"> <?php echo $row["title"]?></h5>
+                                                        <h6 class="event-info "> <?php echo $row["title"]?></h6>
                                                     </div>
                                                 </div>
                                             <?php   }else{           ?>
@@ -150,7 +149,75 @@ if ($result->num_rows <= 0) {
                                                     <a href="http://"><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
                                                         alt="..."></a>
                                                     <div class="carousel-caption d-none d-md-block d-flex">
-                                                        <h5 class="w-100 event-info"><?php  echo $row["title"] ?></h5>
+                                                        <h6 class="w-100 event-info "><?php  echo $row["title"] ?></h6>
+                                                    </div>
+                                                </div>
+                                            <?php  }  
+                                            //add to the counter          
+                                                $ctr++;
+                                                }   
+                                                $result->data_seek(0);
+
+                                            ?>
+                                </div>
+                            </div>
+                        </div>
+                   
+                        <a class="carousel-control-prev ml-4" href="#events" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon ml-4 bg-dark py-3 px-1" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        
+                        <a class="carousel-control-next mr-4 " href="#events" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon mr-4 bg-dark py-3 px-1" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="card my-0 p-4">
+                        <div class="card-top">
+                            <h4 class=" m-0 px-0 py-1 text-center">Important Updates</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div id="carousel" class="carousel slide bg-dark w-100 " data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <?php  
+                                          $ctr = 0; //counter
+
+                                          while($row = $result->fetch_assoc()) {
+                                            if ($ctr == 0){ //add active class to the first element of the carousel  
+                                            
+                                                echo "<li data-target='#carousel' data-slide-to='". $ctr. "'class='active'></li>";
+                                            }else{ //create a list item under carousel and number by number placement of element 
+                                            
+                                                echo "<li data-target='#carousel' data-slide-to='". $ctr. "'></li>";
+                                            } 
+                                            $ctr++;    
+                                            }   
+                                                                                //go back to beginning of mysql
+                                        $result->data_seek(0);
+                    
+                                 ?>
+                                </ol>
+                                <div id="inner"class="carousel-inner   w-100">
+                                    <?php 
+                                    $ctr = 0;
+                                        while($row = $result->fetch_assoc()){
+                                            if ($ctr == 0){//restricts to show the newest four results   ?>
+                        
+                                                <div class="carousel-item <?php echo "active";?>">
+                                                    <img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                        alt="...">
+                                                    <div class="carousel-caption d-none d-md-block text-center d-flex">
+                                                        <h6 class="event-info"> <?php   echo "Update ". ($ctr + 1) /*$row[""] */?></h6>
+                                                    </div>
+                                                </div>
+                                            <?php   }else{           ?>
+                                                <div class="carousel-item">
+                                                    <a href="http://"><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                        alt="..."></a>
+                                                    <div class="carousel-caption d-none d-md-block d-flex">
+                                                        <h6 class="w-100 event-info"><?php  echo "Update ". ($ctr +1) /*$row[""] */?></h6>
                                                     </div>
                                                 </div>
                                             <?php  }  
@@ -160,16 +227,19 @@ if ($result->num_rows <= 0) {
                                             ?>
                                 </div>
                             </div>
-                                        </div>
+                        </div>
+                   
+                        <a class="carousel-control-prev ml-4" href="#carousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon ml-4 bg-dark py-3 px-1" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        
+                        <a class="carousel-control-next mr-4 " href="#carousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon mr-4 bg-dark py-3 px-1" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev ml-4" href="#carousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon ml-4 bg-dark py-3 px-1" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next mr-4 " href="#carousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon mr-4 bg-dark py-3 px-1" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    
                 </div>
             </div>
         </div>
@@ -209,8 +279,8 @@ if ($result->num_rows <= 0) {
             </ul>
 
             <div class="col-12 my-4 mx-0 text-center">
-                <img class="img-fluid " alt="" src="astro.png">
-
+            <img class="img-fluid" src="https://via.placeholder.com/600x600.png "
+                                                        alt="...">
                 <h4 class="my-4 p-0">Intranet User?</h4>
 
                 <button class="btn btn-primary text-white col-8 py-2">Login</button>
@@ -223,8 +293,8 @@ if ($result->num_rows <= 0) {
                     <div class=" col-sm-6  mx-0 py-4 text">
 
                         <h4 class="px-0 text-center py-2">Astronomy</h4>
-                        <a href=""><img class=" img-fluid science-img mx-0" src="astronomy-banner_lowres.jpeg" alt=""
-                                srcset=""></a>
+                        <a href=""><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                        alt="..."></a>
 
 
                     </div>
@@ -273,8 +343,8 @@ if ($result->num_rows <= 0) {
                     <div class=" col-sm-6  mx-0 py-4 text">
 
                         <h4 class="px-0 text-center py-2">Atmospheric Sciences</h4>
-                        <a href=""><img class=" img-fluid science-img mx-0" src="astronomy-banner_lowres.jpeg" alt=""
-                                srcset=""></a>
+                        <a href=""><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                        alt="...">  </a>
 
 
                     </div>
@@ -323,8 +393,8 @@ if ($result->num_rows <= 0) {
                     <div class=" col-sm-6  mx-auto py-4 text">
 
                         <h4 class="px-0 text-center py-2">Planetary Sciences</h4>
-                        <a href=""><img class=" img-fluid science-img mx-0" src="astronomy-banner_lowres.jpeg" alt=""
-                                srcset=""></a>
+                        <a href=""><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                        alt="..."></a>
 
 
                     </div>
