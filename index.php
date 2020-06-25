@@ -77,14 +77,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT `date`,`title` FROM `science-home` ORDER BY `date` DESC ";
+$sql = "SELECT * FROM `science-home` ORDER BY `date` DESC ";
 $result = $conn->query($sql);
 if ($result->num_rows <= 0) {
     // output data of each row
     echo "0 results";
   } else {
-      echo "Results found";
-      $ctr = 0; //counter
+
    //while PHP pulls results
   ?>
 
@@ -110,68 +109,70 @@ if ($result->num_rows <= 0) {
                         <div class="card-top">
                             <h4 class=" m-0 px-0 py-1 text-center">Upcoming Events</h4>
                         </div>
-                        <div class="card-body event-info   ">
+                        <div class="card-body">
 
                             <div id="carousel" class="carousel slide bg-dark w-100 " data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <?php  
-                                        while($row = $result->fetch_assoc()) {
+                                          $ctr = 0; //counter
+
+                                          while($row = $result->fetch_assoc()) {
                                             if ($ctr == 0){ //add active class to the first element of the events  
                                             
                                                 echo "<li data-target='#carousel' data-slide-to='". $ctr. "'class='active'></li>";
                                             }else{ //create a list item under carousel and number by number placement of element 
                                             
                                                 echo "<li data-target='#carousel' data-slide-to='". $ctr. "'></li>";
-                                            }                                 
+                                            } 
+                                            $ctr++;    
+                                            }   
+                                                                                //go back to beginning of mysql
+                                        $result->data_seek(0);
+                    
                                  ?>
                                 </ol>
-                                <div class="carousel-inner  h-100 w-100">
+                                <div id="inner"class="carousel-inner   ">
                                     <?php 
-                                            
-                                        if ($ctr == 0){//restricts to show the newest four results   ?>
+                                    $ctr = 0;
+                                        while($row = $result->fetch_assoc()){
+                                            if ($ctr == 0){//restricts to show the newest four results   ?>
 
-                                    <div class="carousel-item <?php echo "active";?>">
-                                        <img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
-                                            alt="...">
-                                        <div class="carousel-caption d-none d-md-block text-center">
-                                            <h5>Test Item <?php echo 1 + $ctr?></h5>
-                                            <p>...</p>
-                                        </div>
-                                    </div>
-                                    <?php   }else{           ?>
-                                    <div class="carousel-item">
-                                        <img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
-                                            alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>Test Item <?php echo 1 + $ctr?></h5>
-                                            <p>...</p>
-                                        </div>
-                                    </div>
-                                    <?php
-                                                    }  
-                                        //add to the counter          
-                                        $ctr++;  
-                                            }
-                                            ?></div>
-                            </div>
-                        </div><?php
-                    }
-                                            
+                                                <div class="carousel-item <?php echo "active";?>">
+                                                    <a href="http://"><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                        alt="..."></a>
+                                                    <div class="carousel-caption d-none d-md-block text-center d-flex">
+                                                        <h5 class="event-info"> <?php echo $row["title"]?></h5>
+                                                    </div>
+                                                </div>
+                                            <?php   }else{           ?>
+                                                <div class="carousel-item">
+                                                    <a href="http://"><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                        alt="..."></a>
+                                                    <div class="carousel-caption d-none d-md-block d-flex">
+                                                        <h5 class="w-100 event-info"><?php  echo $row["title"] ?></h5>
+                                                    </div>
+                                                </div>
+                                            <?php  }  
+                                            //add to the counter          
+                                                $ctr++;
+                                                }   
                                             ?>
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                    
+                    <a class="carousel-control-prev mt-4 ml-4" href="#carousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon ml-4 bg-dark py-3 px-1" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <a class="carousel-control-next mt-4 mr-4 " href="#carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon mr-4 bg-dark py-3 px-1" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+  
     <div class="row mx-0 px-0 d-flex">
         <div class="col-sm-12 col-md-3">
             <h2 class="mt-4">Common Links</h2>
@@ -370,12 +371,15 @@ if ($result->num_rows <= 0) {
             </div>
         </div>
     </div>
-    </div>
-
+</div>
+><?php
+                    }
+                    ?>
 </body>
 
 </html>
 <?php
 
+$result -> free_result();
 $conn->close();
 ?>
