@@ -83,6 +83,7 @@ if ($result->num_rows <= 0) {
     // output data of each row
     echo "0 results";
   } else {
+      echo "Results found";
 
    //while PHP pulls results
   ?>
@@ -96,7 +97,53 @@ if ($result->num_rows <= 0) {
                     <div class="card-body h-100"></div>
                     <div class="card-footer  mb-0 p-4 text-white h-0   bg-info border-0 alert alert-warning alert-dismissible fade show"
                         role="alert">
-                        This is a section to alert users of important updates
+
+                        <div id="alert" class="carousel slide  bg-alert h-100   w-100 " data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <?php  
+                                          $ctr = 0; //counter
+
+                                          while($row = $result->fetch_assoc()) {
+                                            if ($ctr == 0){ //add active class to the first element of the events  
+                                            
+                                                echo "<li data-target='#alert' data-slide-to='". $ctr. "'class='active'></li>";
+                                            }else{ //create a list item under carousel and number by number placement of element 
+                                            
+                                                echo "<li data-target='#alert' data-slide-to='". $ctr. "'></li>";
+                                            } 
+                                            $ctr++;    
+                                            }   
+                                                                                //go back to beginning of mysql
+                                        $result->data_seek(0);
+                    
+                                 ?>
+                                </ol>
+                                <div id="inner"class="carousel-inner bg-a mb-4 h-100 bg-alert w-100 text-center">
+                                    <?php 
+                                    $ctr = 0;
+                                        while($row = $result->fetch_assoc()){
+                                            if ($ctr == 0){//restricts to show the newest four results   ?>
+
+                                                <div class="carousel-item mb-4 <?php echo "active";?>">
+                                                    
+                                                    <div class=" d-none d-md-block text-center d-flex">
+                                                        <h5 class="event-info"> <?php echo $row["title"]?></h5>
+                                                    </div>
+                                                </div>
+                                            <?php   }else{           ?>
+                                                <div class="carousel-item mb-4">
+                                                    <div class=" d-none d-md-block d-flex">
+                                                        <h5 class="w-100 event-info"><?php  echo $row["title"] ?></h5>
+                                                    </div>
+                                                </div>
+                                            <?php  }  
+                                            //add to the counter          
+                                                $ctr++;
+                                                }   
+                                            ?>
+                                </div>
+                            </div>
+
                         <button type="button" class="close my-2" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -131,14 +178,14 @@ if ($result->num_rows <= 0) {
                     
                                  ?>
                                 </ol>
-                                <div id="inner"class="carousel-inner   ">
+                                <div id="inner"class="carousel-inner   w-100">
                                     <?php 
                                     $ctr = 0;
                                         while($row = $result->fetch_assoc()){
                                             if ($ctr == 0){//restricts to show the newest four results   ?>
 
                                                 <div class="carousel-item <?php echo "active";?>">
-                                                    <a href="http://"><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
+                                                    </a><img class="img-fluid" src="https://via.placeholder.com/1200x600.png "
                                                         alt="..."></a>
                                                     <div class="carousel-caption d-none d-md-block text-center d-flex">
                                                         <h5 class="event-info"> <?php echo $row["title"]?></h5>
@@ -159,16 +206,10 @@ if ($result->num_rows <= 0) {
                                             ?>
                                 </div>
                             </div>
-                    
-                    <a class="carousel-control-prev mt-4 ml-4" href="#carousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon ml-4 bg-dark py-3 px-1" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next mt-4 mr-4 " href="#carousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon mr-4 bg-dark py-3 px-1" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                            
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
